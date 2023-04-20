@@ -1,0 +1,64 @@
+# Binaries
+bin/
+obj/
+
+# NuGet Packages
+*.nuget.props
+*.nuget.targets
+packages/
+*.nupkg
+*.snupkg
+
+# MSTest Test Results
+TestResults/
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Mm]igration/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+*.user
+*.suo
+*.sln.docstates
+*.pdb
+*.cache
+*.vsp
+*.vspx
+*.vss
+*.log
+*.vspscc
+
+# Resharper
+_ReSharper.*
+
+# Rider
+.idea/
+*.dotSettings.user
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+#
+
+
