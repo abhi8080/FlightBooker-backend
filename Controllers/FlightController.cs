@@ -31,7 +31,7 @@ public async Task<IEnumerable<DateTime>> GetFlightDates()
 
 
 [HttpGet]
-public async Task<IEnumerable<Flight>> GetFlightsBySearchCriteria([FromQuery] int departureAirportCode, [FromQuery] int arrivalAirportCode, [FromQuery] string startDate)
+public async Task<List<Flight>> GetFlightsBySearchCriteria([FromQuery] int departureAirportCode, [FromQuery] int arrivalAirportCode, [FromQuery] string startDate)
 {
     DateTime date;
     DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture,DateTimeStyles.None, out date);
