@@ -1,12 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using backend.Controllers;
 using backend.Data;
 using backend.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using Xunit;
 
 public class FlightControllerTests
