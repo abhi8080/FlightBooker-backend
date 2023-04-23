@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Models;
 using System.Globalization;
+using Npgsql;
+
 
 namespace backend.Controllers
 {
@@ -21,13 +23,29 @@ namespace backend.Controllers
 
 
 [HttpGet("dates")]
-public async Task<IEnumerable<DateTime>> GetFlightDates()
-{
-    return await _db.Flights
-        .Select(f => f.StartDateTime.Date)
-        .Distinct()
-        .ToListAsync();
-}
+   public async Task<List<DateTime>> GetFlightDates()
+    {
+        DotNetEnv.Env.Load();
+
+        using var conn = new NpgsqlConnection(Environment.GetEnvironmentVariable("ConnectionString"));
+        await conn.OpenAsync();
+
+        string query = @"
+            SELECT DISTINCT date_trunc('day', ""StartDateTime"")
+            FROM ""Flights""";
+
+       using var command = new NpgsqlCommand(query, conn);
+
+        using var reader = await command.ExecuteReaderAsync();
+        var result = new List<DateTime>();
+        while (await reader.ReadAsync())
+        {
+            var date = reader.GetDateTime(0);
+            result.Add(date);
+        }
+
+        return result;
+    }
 
 
 [HttpGet]
