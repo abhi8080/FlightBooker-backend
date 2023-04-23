@@ -1,4 +1,5 @@
 # Binaries
+bin/
 obj/
 
 # NuGet Packages
@@ -12,7 +13,8 @@ packages/
 TestResults/
 
 # Build Results
-
+[Dd]ebug/
+[Rr]elease/
 x64/
 build/
 [Mm]igration/
