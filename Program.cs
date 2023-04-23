@@ -1,13 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
-
-
-
- DotNetEnv.Env.Load();
-    
-
+using backend;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -21,14 +17,10 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod());
 });
 
-
-
-string connectionString = Environment.GetEnvironmentVariable("ConnectionString");
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApplicationDbContext>(
-    o => o.UseNpgsql(connectionString));
+    o => o.UseNpgsql(Env.connectionString));
 
 var app = builder.Build();
 

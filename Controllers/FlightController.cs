@@ -25,9 +25,7 @@ namespace backend.Controllers
 [HttpGet("dates")]
    public async Task<List<DateTime>> GetFlightDates()
     {
-        DotNetEnv.Env.Load();
-
-        using var conn = new NpgsqlConnection(Environment.GetEnvironmentVariable("ConnectionString"));
+        using var conn = new NpgsqlConnection(Env.connectionString);
         await conn.OpenAsync();
 
         string query = @"
