@@ -4,7 +4,7 @@ using backend.Data;
 using backend.Models;
 using System.Globalization;
 using Npgsql;
-
+using Microsoft.AspNetCore.Cors;
 
 namespace backend.Controllers
 {

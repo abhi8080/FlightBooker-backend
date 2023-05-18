@@ -1,6 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,11 +18,10 @@ builder.Services.AddControllers();
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin",
-        builder => builder.WithOrigins("http://localhost:5173")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod());
-});
+    options.AddDefaultPolicy(builder => builder.WithOrigins("http://localhost:5173").AllowAnyHeader()
+);});
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -28,7 +34,15 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("AllowOrigin"); // Enable CORS middleware
+
+/*app.UseCors(options => {
+    options.WithOrigins("http://localhost:5173").
+    AllowAnyMethod().
+    AllowAnyHeader();
+});
+*/
+
+app.UseCors(); // Enable CORS middleware
 
 app.UseAuthorization();
 
